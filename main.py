@@ -8,10 +8,11 @@ import pgzrun as pgz
 import random, math
 
 class Enemy:
-  def __init__(self, actor, direction, health):
+  def __init__(self, actor, direction, health, enemy_type):
     self.health = health
     self.actor = actor
     self.direction = direction
+    self.enemy_type = enemy_type
 
 HEIGHT = 200
 WIDTH = 500
@@ -74,7 +75,7 @@ def fire_laser():
 def spawn_enemies():
   global game_right, level
   for i in range(0, random.randrange(5 * level, 10 * level)):
-    enemies.append(Enemy(Actor("enemies/full_health", pos=(random.randrange(0, game_right), random.randrange(0, 30))), random.randrange(1,3), 3))
+    enemies.append(Enemy(Actor("enemies/full_health", pos=(random.randrange(0, game_right), random.randrange(0, 30))), random.randrange(1,3), 3, "common"))
 
 def handle_movement():
   global game_right
@@ -90,10 +91,11 @@ def handle_movement():
 
 def update_enemies():
   for enemy in enemies:
-    if (enemy.health == 2):
-      enemy.actor.image = 'enemies/medium_health'
-    elif (enemy.health == 1):
-      enemy.actor.image = 'enemies/low_health'
+    if (enemy.enemy_type == "common"):
+      if (enemy.health == 2):
+        enemy.actor.image = 'enemies/medium_health'
+      elif (enemy.health == 1):
+        enemy.actor.image = 'enemies/low_health'
     if (enemy.direction == 1):
       enemy.actor.left -= 2
     else:
@@ -234,7 +236,7 @@ def on_mouse_down(pos, button):
       else:
         lasers = []
         enemies = []
-        enemies.append(Enemy(Actor("enemies/boss", pos=(WIDTH/2, 20)), 1, 10))
+        enemies.append(Enemy(Actor("enemies/boss", pos=(WIDTH/2, 20)), 1, 10, "boss"))
         remaining_health = HEIGHT - 10
         started = True
         level += 1
