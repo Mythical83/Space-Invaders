@@ -4,11 +4,10 @@ Art by mattwalkden
 [His website](https://mattwalkden.com)  
 
 # TODO
-(I'm probably going to keep working on this after I have submitted the project)  
 - [X] Switch the missiles out for lasers
-- [ ] Add special enemies that shoot back
-- [ ] Boss fight
-- [ ] Options menu
+- [X] Boss fight
 - [X] Level system
 - [X] Background
-- [ ] Refactoring
+- [X] Refactoring
+- [ ] Explosions
+- [ ] Sound effects
